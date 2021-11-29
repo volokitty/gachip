@@ -3,4 +3,4 @@ BINARY_NAME=gachip
 BUILD_DIR=../build
 
 all:
-	$(CC) *.c -o $(BUILD_DIR)/$(BINARY_NAME)
+    $(CC) *.c -o $(BUILD_DIR)/$(BINARY_NAME)

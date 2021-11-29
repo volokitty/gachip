@@ -9,10 +9,10 @@ byte ymax = 32
 byte dy = 4
 
 while y < ymax
-	if rand() & 0x1
-		draw x y r
-	else
-		draw x y l
-	if (x += dx) == xmax
-		x = 0
-		y += dy
+    if rand() & 0x1
+        draw x y r
+    else
+        draw x y l
+    if (x += dx) == xmax
+        x = 0
+        y += dy

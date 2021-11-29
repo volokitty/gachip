@@ -3,20 +3,20 @@
 
 typedef struct
 {
-	char* type;
-	char* argument;
+    char* type;
+    char* argument;
 } token_t;
 
 typedef struct node
 {
-	struct node* next;
-	token_t token;
+    struct node* next;
+    token_t token;
 } node_t;
 
 typedef struct
 {
-	node_t* head;
-	node_t* tail;
+    node_t* head;
+    node_t* tail;
 } tokenList_t;
 
 tokenList_t* createTokenList();
