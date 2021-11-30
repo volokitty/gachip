@@ -1,11 +1,7 @@
 #ifndef TOKENS_LIST_H
 #define TOKENS_LIST_H
 
-typedef struct TOKEN_STRUCT
-{
-    char* type;
-    char* value;
-} token_t;
+#include "token.h"
 
 typedef struct NODE_STRUCT
 {
