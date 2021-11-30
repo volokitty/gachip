@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "headers/tokenList.h"
 
-static node_t* createNode(char* type, char* value)
+static node_t* createNode(enum tokenType type, char* value)
 {
     node_t* node = malloc(sizeof(node_t));
     node->token.type = type;
@@ -16,7 +16,7 @@ tokenList_t* createTokenList()
     return malloc(sizeof(tokenList_t));
 }
 
-void pushToken(tokenList_t* list, char* type, char* value)
+void pushToken(tokenList_t* list, enum tokenType type, char* value)
 {
     node_t* node = createNode(type, value);
     
@@ -51,7 +51,7 @@ void printTokenList(tokenList_t* list)
     
     while (currNode)
     {
-        printf("(\"%s\", \"%s\")\n", currNode->token.type, currNode->token.value);
+        printf("(type: %d, value: \"%s\")\n", currNode->token.type, currNode->token.value);
         currNode = currNode->next;
     }
 }
