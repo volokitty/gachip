@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "headers/tokenList.h"
 
-static node_t* createNode(char* type, char* argument)
+static node_t* createNode(char* type, char* value)
 {
     node_t* node = malloc(sizeof(node_t));
     node->token.type = type;
-    node->token.argument = argument;
+    node->token.value = value;
     
     return node;
 }
@@ -16,9 +16,9 @@ tokenList_t* createTokenList()
     return malloc(sizeof(tokenList_t));
 }
 
-void pushToken(tokenList_t* list, char* type, char* argument)
+void pushToken(tokenList_t* list, char* type, char* value)
 {
-    node_t* node = createNode(type, argument);
+    node_t* node = createNode(type, value);
     
     if (!list->head)
     {
@@ -51,7 +51,7 @@ void printTokenList(tokenList_t* list)
     
     while (currNode)
     {
-        printf("(\"%s\", \"%s\")\n", currNode->token.type, currNode->token.argument);
+        printf("(\"%s\", \"%s\")\n", currNode->token.type, currNode->token.value);
         currNode = currNode->next;
     }
 }

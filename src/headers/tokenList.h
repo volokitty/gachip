@@ -4,7 +4,7 @@
 typedef struct TOKEN_STRUCT
 {
     char* type;
-    char* argument;
+    char* value;
 } token_t;
 
 typedef struct NODE_STRUCT
