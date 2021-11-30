@@ -1,19 +1,19 @@
-#ifndef __TOKENS_LIST_H_
-#define __TOKENS_LIST_H_
+#ifndef TOKENS_LIST_H
+#define TOKENS_LIST_H
 
-typedef struct
+typedef struct TOKEN_STRUCT
 {
     char* type;
     char* argument;
 } token_t;
 
-typedef struct node
+typedef struct NODE_STRUCT
 {
-    struct node* next;
+    struct NODE_STRUCT* next;
     token_t token;
 } node_t;
 
-typedef struct
+typedef struct TOKEN_LIST_STRUCT
 {
     node_t* head;
     node_t* tail;
