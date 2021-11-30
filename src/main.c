@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv)
 {
-    tokenList_t* tokens = createTokenList();
+    tokenList_t* tokens = initTokenList();
     
     pushToken(tokens, NUMBER, "0x0");
     pushToken(tokens, ID, "smile");

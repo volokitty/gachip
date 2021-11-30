@@ -11,7 +11,7 @@ static node_t* createNode(enum tokenType type, char* value)
     return node;
 }
 
-tokenList_t* createTokenList()
+tokenList_t* initTokenList()
 {
     return malloc(sizeof(tokenList_t));
 }

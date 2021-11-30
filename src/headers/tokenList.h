@@ -15,7 +15,7 @@ typedef struct TOKEN_LIST_STRUCT
     node_t* tail;
 } tokenList_t;
 
-tokenList_t* createTokenList();
+tokenList_t* initTokenList();
 
 void pushToken(tokenList_t* list, enum tokenType, char* argument);
 void freeTokenList(tokenList_t* list);
