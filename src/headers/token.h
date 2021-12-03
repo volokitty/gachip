@@ -4,11 +4,12 @@
 enum tokenType
 {
     ID,
-    EQUALS,
     LBRACK,
     RBRACK,
     NUMBER,
-    COMMA
+    COMMA,
+    BINOP,
+    UNOP
 };
 
 typedef struct TOKEN_STRUCT
