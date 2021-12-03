@@ -3,6 +3,6 @@
 
 #include "tokenList.h"
 
-tokenList_t getTokens(char* input);
+tokenList_t getTokens(char* source);
 
 #endif
