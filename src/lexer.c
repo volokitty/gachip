@@ -4,6 +4,7 @@
 #include <string.h>
 #include "headers/tokenList.h"
 #include "headers/lexer.h"
+#include "headers/token.h"
 
 state_t getState(state_t prev, char c)
 {

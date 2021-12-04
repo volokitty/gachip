@@ -8,8 +8,7 @@ enum tokenType
     RBRACK,
     NUMBER,
     COMMA,
-    BINOP,
-    UNOP
+    BINOP
 };
 
 typedef struct TOKEN_STRUCT
