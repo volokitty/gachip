@@ -2,37 +2,37 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include "headers/tokenList.h"
-#include "headers/lexer.h"
-#include "headers/token.h"
+#include "include/tokenList.h"
+#include "include/lexer.h"
+#include "include/token.h"
 
-state_t getState(state_t prev, char c)
+state_t getState(state_t prev, char c, unsigned int sourcePos)
 {
     switch (prev)
     {
-        case 0:
+        case IDLE_STATE:
             if (isalpha(c))
-                return 1;
+                return 100;
             if (c == '[')
-                return 3;
+                return LBRACK;
             if (c == ']')
-                return 4;
+                return RBRACK;
             if (isdigit(c))
-                return 5;
+                return 500;
             if (c == ',')
-                return 7;
-            if (strchr(c, "+-*/"))
-                return 8;
-        case 1:
+                return COMMA;
+            if (strchr("+-*/", c))
+                return BINOP;
+        case 100:
             if (isalpha(c) || isdigit(c))
-                return 1;
-            return 2;
-        case 5:
+                return 100;
+            return ID;
+        case 500:
             if (isdigit(c))
-                return 5;
-            return 6;
+                return 500;
+            return NUMBER;
         default:
-            printf("Error. Unknown lexem on %d\n", c);
+            printf("Error. Unknown lexem on :%d\n", sourcePos);
             exit(1);
     }
 }
@@ -40,12 +40,27 @@ state_t getState(state_t prev, char c)
 tokenList_t* getTokens(char* source)
 {
     tokenList_t* tokens = initTokenList();
-    state_t state = 0;
+    state_t state = IDLE_STATE;
     unsigned int sourcePos = 0;
+    char token[20] = "";
 
-    while (source[sourcePos] != '\0')
-    {
-        state = getState(state, c);
+    while (sourcePos <= strlen(source))
+    {        
+        state = getState(state, source[sourcePos], sourcePos);
+        printf("state: %d\n", state);
+       
+        if (state < 100 || sourcePos == strlen(source))
+        {
+            pushToken(tokens, state, token);
+            printf("%s\n", token);
+            strcpy(token, "");
+            state = IDLE_STATE;
+        }
+       
+        if (!strchr(" \n\t", source[sourcePos]))
+            strncat(token, &source[sourcePos], 1);
+        
+        sourcePos++;
     }
 
     return tokens;

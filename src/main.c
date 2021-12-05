@@ -1,18 +1,12 @@
 #include <stdio.h>
-#include <string.h>
-#include "headers/token.h"
-#include "headers/tokenList.h"
+#include "include/tokenList.h"
+#include "include/lexer.h"
 
 int main(int argc, char **argv)
 {
-    tokenList_t* tokens = initTokenList();
-    
-    pushToken(tokens, NUMBER, "0x0");
-    pushToken(tokens, ID, "smile");
-    pushToken(tokens, NUMBER, "0x28");
-    
+    tokenList_t* tokens = getTokens("draw 0 0 smile");
     printTokenList(tokens);
     freeTokenList(tokens);
-
+    
     return 0;
 }

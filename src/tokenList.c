@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers/tokenList.h"
+#include <string.h>
+#include "include/tokenList.h"
 
 static node_t* createNode(enum tokenType type, char* value)
 {
     node_t* node = malloc(sizeof(node_t));
     node->token.type = type;
-    node->token.value = value;
+    node->token.value = malloc(strlen(value));
+    strcpy(node->token.value, value);
     
     return node;
 }
