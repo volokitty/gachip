@@ -49,11 +49,12 @@ void freeTokenList(tokenList_t* list)
 
 void printTokenList(tokenList_t* list)
 {
+    const char* tokenTypeNames[] = { "ID", "LBRACK", "RBRACK", "NUMBER", "COMMA", "BINOP" };
     node_t* currNode = list->head;
     
     while (currNode)
     {
-        printf("(type: %d, value: \"%s\")\n", currNode->token.type, currNode->token.value);
+        printf("(type: %s, value: \"%s\")\n", tokenTypeNames[currNode->token.type], currNode->token.value);
         currNode = currNode->next;
     }
 }
