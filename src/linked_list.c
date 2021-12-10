@@ -11,6 +11,9 @@ void
 append(struct list *l, void *data)
 {
     struct node *node = malloc(sizeof(node));
+    
+    if (!node) exit(1);
+    
     node->data = data;
 
     if (!l->head) {
