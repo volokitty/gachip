@@ -4,7 +4,11 @@
 struct list *
 init_list()
 {
-    return malloc(sizeof(struct list));
+    struct list *l = malloc(sizeof(struct list));
+    
+    if (!l) exit(1);
+    
+    return l;
 }
 
 void
