@@ -9,7 +9,7 @@ token_list *
 init_token_list();
 
 void
-token_list_append(token_list *l, struct token t);
+token_list_append(token_list *l, char *arg);
 
 void
 show_token_list(token_list *l);
