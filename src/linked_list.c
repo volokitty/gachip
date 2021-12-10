@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "include/list.h"
+#include "include/linked_list.h"
 
 struct list *
 init_list()

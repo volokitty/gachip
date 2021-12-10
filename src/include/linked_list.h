@@ -15,6 +15,6 @@ struct list *
 init_list();
 
 void
-append(void *data);
+append(struct list *l, void *data);
 
 #endif
