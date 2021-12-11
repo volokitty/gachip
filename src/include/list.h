@@ -1,5 +1,5 @@
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
+#ifndef LIST_H
+#define LIST_H
 
 struct node {
     struct node *next;

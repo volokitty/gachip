@@ -1,7 +1,7 @@
 #ifndef TOKEN_LIST_H
 #define TOKEN_LIST_H
 
-#include "linked_list.h"
+#include "list.h"
 
 typedef struct list token_list;
 
