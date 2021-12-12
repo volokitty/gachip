@@ -2,16 +2,12 @@
 #define TOKEN_LIST_H
 
 #include "list.h"
-
-typedef struct list token_list;
-
-token_list *
-init_token_list();
+#include "token.h"
 
 void
-token_list_append(token_list *l, char *arg);
+token_list_push(struct list *l, enum token_type type, char *arg);
 
 void
-show_token_list(token_list *l);
+print_token_list(struct list *l);
 
 #endif

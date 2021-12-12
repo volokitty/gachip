@@ -12,7 +12,7 @@ init_list()
 }
 
 void
-append(struct list *l, void *data)
+push(struct list *l, void *data)
 {
     struct node *node = malloc(sizeof(node));
     

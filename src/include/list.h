@@ -17,6 +17,6 @@ struct list *
 init_list();
 
 void
-push(struct list *l, void *data, size_t size);
+push(struct list *l, void *data);
 
 #endif
