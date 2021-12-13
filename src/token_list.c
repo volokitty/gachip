@@ -34,6 +34,15 @@ print_token_list(struct list *l)
 void
 free_token_list(struct list *l)
 {
-    
+    if (!l || !l->head) exit(1);
+
+    struct node *node = l->head;
+
+    while (node) {
+        free(node->data);
+        node = node->next;
+    }
+
+    free_list(l);
 }
 

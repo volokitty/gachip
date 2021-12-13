@@ -37,7 +37,7 @@ free_list(struct list *l)
     struct node *node = l->head;
     struct node *tmp;
     
-    while (node->next) {
+    while (node) {
         tmp = node->next;
         free(node);
         node = tmp;

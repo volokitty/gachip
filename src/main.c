@@ -12,6 +12,7 @@ main(int argc, char **argv)
     token_list_push(tokens, NUMBER, "0");
     
     print_token_list(tokens);
+    free_token_list(tokens);
 
     return 0;
 }
