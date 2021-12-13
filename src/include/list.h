@@ -19,4 +19,7 @@ init_list();
 void
 push(struct list *l, void *data);
 
+void
+free_list(struct list *l);
+
 #endif

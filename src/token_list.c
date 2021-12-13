@@ -30,3 +30,10 @@ print_token_list(struct list *l)
         node = node->next;
     }
 }
+
+void
+free_token_list(struct list *l)
+{
+    
+}
+

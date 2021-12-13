@@ -28,3 +28,18 @@ push(struct list *l, void *data)
         l->tail = node;
     }
 }
+
+void
+free_list(struct list *l)
+{
+    if (!l || !l->head) exit(1);
+    
+    struct node *node = l->head;
+    struct node *tmp;
+    
+    while (node->next) {
+        tmp = node->next;
+        free(node);
+        node = tmp;
+    }
+}
