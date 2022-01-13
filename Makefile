@@ -1,10 +1,11 @@
 CC=gcc
 BINARY_NAME=gachip
-BUILD_DIR=../build
-EXAMPLES_DIR=../examples
+BUILD_DIR=build
+SOURCE_DIR=src
+EXAMPLES_DIR=examples
 
 all:
-	$(CC) *.c -o $(BUILD_DIR)/$(BINARY_NAME)
+	$(CC) $(SOURCE_DIR)/*.c -o $(BUILD_DIR)/$(BINARY_NAME)
 
 run:
 	$(BUILD_DIR)/$(BINARY_NAME)
