@@ -7,3 +7,4 @@ Gachip is a high-level C-like programming language that compiles into machine co
 - [ ] String
 - [ ] Input
 - [ ] Output
+- [ ] Physics
