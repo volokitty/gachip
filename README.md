@@ -3,6 +3,7 @@ Gachip is a high-level C-like programming language that compiles into machine co
 
 ### TODO
 
+- [ ] Expression evaluation
 - [ ] Arithmetics
 - [ ] String
 - [ ] Input
