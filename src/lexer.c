@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,9 +9,10 @@ init_lexer(const char *code)
 {
     struct lexer *lexer = malloc(sizeof(struct lexer));
 
-    lexer->state = START;
+    lexer->state = INIT;
+    lexer->next_state = -1;
     lexer->code = code;
-    lexer->token = "";
+    strcpy(lexer->token, "");
 
     return lexer;
 }
@@ -19,27 +21,27 @@ static enum state
 get_next_state(enum state state, char c)
 {
     switch (state) {
-        case START:
+        case INIT:
             if (isspace(c))
                 return WHITESPACE;
             if (isdigit(c))
                 return DIGIT;
-            if (strchr(operators, c)
+            if (strchr(operators, c))
                 return OP;
             if (c == '(')
                 return LPAR;
             if (c == ')')
                 return RPAR;
         case WHITESPACE:
-            return START;
+            return INIT;
         case OP:
-            return OP;
+            return INIT;
         case LPAR:
-            return START;
+            return INIT;
         case RPAR:
-            return START;
+            return INIT;
         case DIGIT:
-            if (isdigit)
+            if (isdigit(c))
                 return DIGIT;
             return NUMBER;
         default:
@@ -52,16 +54,24 @@ lex(const char *code)
 {
     struct lexer *lexer = init_lexer(code);
 
-    unsigned int = 0;
+    unsigned int i = 0;
     while (i < strlen(lexer->code)) {
         lexer->next_state = get_next_state(lexer->state, code[i]);
 
-        if (lexer->next_state == START) {
+        if (lexer->next_state == INIT) {
             if (lexer->state != WHITESPACE) {
                 puts(lexer->token);
-                lexer->token = "";
-                i--;
             }
+
+            strcpy(lexer->token, "");
+            i--;
+        } else {
+            if (lexer->state != WHITESPACE) {
+                strncat(lexer->token, code + i, 1);
+            }
+
+            lexer->state = lexer->next_state;
+            i++;
         }
     }
 

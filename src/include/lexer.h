@@ -3,7 +3,7 @@
 
 const char *operators = "+-*/";
 
-enum states {
+enum state {
     INIT,
     WHITESPACE,
     DIGIT,
@@ -15,13 +15,13 @@ enum states {
 };
 
 struct lexer {
-    enum state;
-    enum next_state;
-    char *code;
+    enum state state;
+    enum state next_state;
+    const char *code;
     char token[24];
 };
 
 void
-lex(struct lexer *lexer)
+lex(const char *code);
 
 #endif
