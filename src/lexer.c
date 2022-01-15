@@ -88,6 +88,7 @@ lex(const char *code)
 
         lexer->state = lexer->next_state;
     }
+    puts(lexer->token);
 
     free(lexer);
 }
