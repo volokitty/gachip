@@ -1,7 +1,7 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-const char *operators = "+-*/";
+const char *ops;
 
 enum state {
     INIT,

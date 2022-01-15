@@ -4,7 +4,7 @@
 int
 main(int argc, char **argv)
 {
-    lex("33 + 7*(8 / 4) - 3");
+    lex("33       \n  \t \v\f+7a7 *(8 / 4) -3");
 
     return 0;
 }
