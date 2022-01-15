@@ -6,7 +6,7 @@ EXAMPLES_DIR=examples
 
 all:
 	mkdir -p $(BUILD_DIR)
-	$(CC) $(SOURCE_DIR)/*.c -o $(BUILD_DIR)/$(BINARY_NAME)
+	$(CC) -Wall $(SOURCE_DIR)/*.c -o $(BUILD_DIR)/$(BINARY_NAME)
 
 run:
 	$(BUILD_DIR)/$(BINARY_NAME)
