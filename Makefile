@@ -5,7 +5,7 @@ SOURCE_DIR=src
 EXAMPLES_DIR=examples
 
 all:
-	mkdir $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)
 	$(CC) $(SOURCE_DIR)/*.c -o $(BUILD_DIR)/$(BINARY_NAME)
 
 run:
