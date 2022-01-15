@@ -4,13 +4,13 @@
 #include <stdlib.h>
 
 struct node {
-	struct node *next;
-	void *data;
+    struct node *next;
+    void *data;
 };
 
 struct list {
-	struct node *head;
-	struct node *tail;
+    struct node *head;
+    struct node *tail;
 };
 
 struct list *
