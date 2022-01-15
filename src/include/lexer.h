@@ -1,8 +1,10 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+const char *operators = "+-*/";
+
 enum states {
-    START,
+    INIT,
     WHITESPACE,
     DIGIT,
     NUMBER,
@@ -12,7 +14,14 @@ enum states {
     UNKNOWN
 };
 
-char is_whitespace(char c);
+struct lexer {
+    enum state;
+    enum next_state;
+    char *code;
+    char token[24];
+};
 
+void
+lex(struct lexer *lexer)
 
 #endif
