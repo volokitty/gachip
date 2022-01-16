@@ -16,8 +16,8 @@ struct list {
 struct list *
 init_list();
 
-void
-push(struct list *l, void *data);
+struct node *
+new_node(void *data);
 
 void
 free_list(struct list *l);
