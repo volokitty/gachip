@@ -1,8 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <stdlib.h>
-
 struct node {
     struct node *next;
     void *data;
@@ -18,6 +16,15 @@ init_list();
 
 struct node *
 new_node(void *data);
+
+void
+push(struct list *l, void *data);
+
+void *
+pop(struct list *l);
+
+void
+enqueue(struct list *l, void *data);
 
 void
 free_list(struct list *l);
