@@ -8,4 +8,7 @@ struct token {
     char value[24];
 };
 
-#endif TOKEN_H
+struct token *
+init_token(enum state type, char *value);
+
+#endif

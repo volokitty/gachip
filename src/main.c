@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <string.h>
 #include "include/file.h"
 #include "include/list.h"
 #include "include/lexer.h"
+#include "include/token.h"
 
 int
 main(int argc, char **argv)
@@ -27,8 +29,19 @@ main(int argc, char **argv)
 
     fclose(fcode);
 
-    lex(code);
+    struct list *tokens = lex(code);
+    int i = 0;
     free(code);
+
+    struct node *curr = tokens->head;
+    /*while (curr) {
+        //printf("%ld\n", strlen(((struct token *) curr->data)->value));
+        curr = curr->next;
+        i++;
+    }
+    printf("tokens num: %d\n", i);
+*/
+    free(tokens);
 
     return 0;
 }

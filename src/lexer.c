@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "include/lexer.h"
+#include "include/list.h"
+#include "include/token.h"
 
 const char *ops = "+-*/";
 
@@ -63,10 +65,12 @@ isunknwn(enum state state)
     return 0;
 }
 
-void
+struct list *
 lex(const char *code)
 {
     struct lexer *lexer = init_lexer(code);
+    struct list *tokens = init_list();
+
     unsigned int i = 0;
     unsigned int line = 1;
     unsigned int last_line_i = 0;
@@ -80,8 +84,12 @@ lex(const char *code)
         }
 
         if (lexer->state && lexer->state != lexer->next_state) {
-            if (strcmp(lexer->token, "") && lexer->state != WHITESPACE)
-                puts(lexer->token);
+            if (strcmp(lexer->token, "") && lexer->state != WHITESPACE) {
+                struct token *token = init_token(lexer->state, lexer->token);
+                enqueue(tokens, token);
+                printf("%d\n", token->type);
+            }
+
             strcpy(lexer->token, "");
         } else {
             if (code[i] == '\n') {
@@ -95,7 +103,11 @@ lex(const char *code)
 
         lexer->state = lexer->next_state;
     }
-    puts(lexer->token);
 
+    //printf("%s\n", lexer->token);
+    //struct token *token = init_token(lexer->state, lexer->token);
+    //enqueue(tokens, token);
     free(lexer);
+
+    return tokens;
 }

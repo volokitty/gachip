@@ -21,7 +21,7 @@ struct lexer {
     char token[24];
 };
 
-void
+struct list *
 lex(const char *code);
 
 #endif
