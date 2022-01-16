@@ -55,6 +55,14 @@ get_next_state(enum state state, char c)
     }
 }
 
+static char
+isunknwn(enum state state)
+{
+    if (state == UNKNOWN)
+        return 1;
+    return 0;
+}
+
 void
 lex(const char *code)
 {
@@ -66,15 +74,14 @@ lex(const char *code)
     while (i < strlen(lexer->code)) {
         lexer->next_state = get_next_state(lexer->state, code[i]);
 
-        if (lexer->next_state == UNKNOWN) {
-            fprintf(stderr, "Error: unknown character at %d:%d\n", line, i - last_line_i);
+        if (isunknwn(lexer->next_state)) {
+            fprintf(stderr, "Error: unknown character at %d:%d\n", line, i - last_line_i + 1);
             exit(1);
         }
 
         if (lexer->state && lexer->state != lexer->next_state) {
             if (strcmp(lexer->token, "") && lexer->state != WHITESPACE)
                 puts(lexer->token);
-
             strcpy(lexer->token, "");
         } else {
             if (code[i] == '\n') {
