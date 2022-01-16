@@ -12,4 +12,4 @@ run:
 	$(BUILD_DIR)/$(BINARY_NAME)
 
 test:
-	$(BUILD_DIR)/$(BINARY_NAME) $(EXAMPLES_DIR)/maze.g
+	$(BUILD_DIR)/$(BINARY_NAME) $(EXAMPLES_DIR)/expr.g
