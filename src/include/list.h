@@ -26,6 +26,9 @@ pop(struct list *l);
 void
 enqueue(struct list *l, void *data);
 
+void *
+dequeue(struct list *l);
+
 void
 free_list(struct list *l);
 

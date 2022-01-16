@@ -50,12 +50,12 @@ void *
 pop(struct list *l)
 {
     if (!l) {
-        fputs("The list is unallocated. Can't pop.\n", stderr);
+        fputs("The list is unallocated. Can't dequeue/pop.\n", stderr);
         exit(1);
     }
 
     if (!l->head) {
-        fputs("Can't pop empty list\n", stderr);
+        fputs("Can't dequeue/pop empty list\n", stderr);
         exit(1);
     }
 
@@ -91,6 +91,12 @@ enqueue(struct list *l, void *data)
         l->tail->next = node;
         l->tail = node;
     }
+}
+
+void *
+dequeue(struct list *l)
+{
+    return pop(l);
 }
 
 void
