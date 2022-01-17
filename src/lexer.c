@@ -57,56 +57,47 @@ get_next_state(enum state state, char c)
     }
 }
 
-static char
-isunknwn(enum state state)
-{
-    if (state == UNKNOWN)
-        return 1;
-    return 0;
-}
-
 struct list *
 lex(const char *code)
 {
     struct lexer *lexer = init_lexer(code);
     struct list *tokens = init_list();
+    
+    size_t code_len = strlen(code);
+    size_t pos = 0;
+    size_t line = 1;
+    size_t last_line_pos = 0;
 
-    unsigned int i = 0;
-    unsigned int line = 1;
-    unsigned int last_line_i = 0;
+    while (pos < code_len || lexer->next_state == UNKNOWN) {
+        lexer->next_state = get_next_state(lexer->state, code[pos]);
 
-    while (i < strlen(lexer->code)) {
-        lexer->next_state = get_next_state(lexer->state, code[i]);
+        //printf("state: %d, next state: %d, \"%s\"\n", lexer->state, lexer->next_state, lexer->token);
 
-        if (isunknwn(lexer->next_state)) {
-            fprintf(stderr, "Error: unknown character at %d:%d\n", line, i - last_line_i + 1);
-            exit(1);
-        }
+        if (lexer->next_state == INIT && lexer->state != WHITESPACE) {
+            struct token *token = init_token(lexer->state, lexer->token);
+            push(tokens, token);
 
-        if (lexer->state && lexer->state != lexer->next_state) {
-            if (strcmp(lexer->token, "") && lexer->state != WHITESPACE) {
-                struct token *token = init_token(lexer->state, lexer->token);
-                enqueue(tokens, token);
-                printf("%d\n", token->type);
-            }
-
+            printf("{ type: %d, value: \"%s\" }\n", lexer->state, lexer->token);
             strcpy(lexer->token, "");
-        } else {
-            if (code[i] == '\n') {
-                line++;
-                last_line_i = i;
-            }
-
-            strncat(lexer->token, code + i, 1);
-            i++;
+            pos--;
         }
+
+        if (lexer->state != WHITESPACE && lexer->state == lexer->next_state) {
+            strncat(lexer->token, code + pos, 1);
+        }
+
+        printf("char: %c\n", code[pos]);
+        pos++;
+        //printf("state: %d, next state: %d, \"%s\"\n", lexer->state, lexer->next_state, lexer->token);
 
         lexer->state = lexer->next_state;
     }
 
-    //printf("%s\n", lexer->token);
-    //struct token *token = init_token(lexer->state, lexer->token);
-    //enqueue(tokens, token);
+    if (lexer->next_state == UNKNOWN) {
+        fprintf(stderr, "Error: unknown character at %ld:%ld\n", line, pos - last_line_pos + 1);
+        exit(1);
+    }
+    
     free(lexer);
 
     return tokens;
