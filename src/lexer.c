@@ -71,24 +71,18 @@ lex(const char *code)
     while (pos < code_len || lexer->next_state == UNKNOWN) {
         lexer->next_state = get_next_state(lexer->state, code[pos]);
 
-        //printf("state: %d, next state: %d, \"%s\"\n", lexer->state, lexer->next_state, lexer->token);
+        if (lexer->next_state == INIT) {
+            if (lexer->state != WHITESPACE) {
+                struct token *token = init_token(lexer->state, lexer->token);
+                enqueue(tokens, token);
+            }
 
-        if (lexer->next_state == INIT && lexer->state != WHITESPACE) {
-            struct token *token = init_token(lexer->state, lexer->token);
-            push(tokens, token);
-
-            printf("{ type: %d, value: \"%s\" }\n", lexer->state, lexer->token);
             strcpy(lexer->token, "");
-            pos--;
         }
 
-        if (lexer->state != WHITESPACE && lexer->state == lexer->next_state) {
-            strncat(lexer->token, code + pos, 1);
+        if (lexer->state == INIT || lexer->state == lexer->next_state) {
+            strncat(lexer->token, code + pos++, 1);
         }
-
-        printf("char: %c\n", code[pos]);
-        pos++;
-        //printf("state: %d, next state: %d, \"%s\"\n", lexer->state, lexer->next_state, lexer->token);
 
         lexer->state = lexer->next_state;
     }
@@ -97,7 +91,7 @@ lex(const char *code)
         fprintf(stderr, "Error: unknown character at %ld:%ld\n", line, pos - last_line_pos + 1);
         exit(1);
     }
-    
+
     free(lexer);
 
     return tokens;

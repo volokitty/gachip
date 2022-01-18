@@ -9,6 +9,9 @@ init_list()
     
     if (!l)
         exit(1);
+
+    l->head = NULL;
+    l->tail = NULL;
     
     return l;
 }

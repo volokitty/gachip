@@ -30,17 +30,14 @@ main(int argc, char **argv)
     fclose(fcode);
 
     struct list *tokens = lex(code);
-    int i = 0;
     free(code);
 
     struct node *curr = tokens->head;
-    /*while (curr) {
-        //printf("%ld\n", strlen(((struct token *) curr->data)->value));
+    while (curr) {
+        printf("{ type: %d, value: \"%s\" }\n", ((struct token *) curr->data)->type, ((struct token *) curr->data)->value);
         curr = curr->next;
-        i++;
     }
-    printf("tokens num: %d\n", i);
-*/
+
     free(tokens);
 
     return 0;
